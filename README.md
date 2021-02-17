@@ -1,2 +1,50 @@
-# javascript-array-functions
-This is repository for my personal notes on usefull javascript array methods.
+ # JavaScript Useful Array Functions
+
+## 1. ```array.map()```
+
+যখন কোন অ্যারেতে ```.map()``` ব্যবহার করা হয়, ইহা নতুন অ্যারে বানাবে, অরিজিনাল অ্যারে এর মডিফাইড ভারসন। ```.map()``` এ্কটি ফাংশন নেয়, যা ওই অ্যারে এর প্রতিটা আইটেম কে লুপ করবে এবং পরিবর্তন করবে্ প্রয়োজন অনুযায়ী। 
+
+```.map()``` মেথড টা কাজে লাগে যখন আমরা কোন অ্যারে এর প্রতিটা আইটেম কে আপডেট করতে চাই এবং নতুন একটি অ্যারে তে সংক্ষণ করতে চাই। 
+
+_চলুন হাত নোংরা করিঃ_
+
+ধরে নেই আমাদের একটি car এর অ্যারে আছেঃ 
+
+ ``` const cars = ['BMW', 'AUDI', 'COROLA']; ```
+ 
+ আমরা চাই প্রতিটা গাড়ি এর পর একটি বাক্য জুরে দিতে। চলুন দেখি এই কাজটি কিভাবে করতে পারি ```.map()``` মেথড দিয়ে। 
+ 
+```
+const coolCars = cars.map( car => {
+  return `{$car is a cool car}`;
+} );
+
+// result: ['BMW is a cool car', 'AUDI is a cool car', 'COROLA is a cool car']
+```
+
+অস্থির!!! ```.map()``` মেথড টি নতুন  এ্কটি অ্যারে তৈরি করল এবং প্রতিটা আইটেম এ নতুন টেক্সট জুরে দিল। 
+
+চলুন কতগুলো ```object``` এর  একটি অ্যারে কে মডিফাই করি ```.map()``` মেথড দিয়ে। ধরে নেই আমাদের ্কাছে কত গুলো গাড়ির টেক্স প্রাইস বিহীন অব্জেক্ট রয়েছে এবং আমরা চাচ্ছি প্রটি টা ```car``  এ ```priceWithTax``` যোগ করতে। 
+
+```
+
+const cars = [
+  { brand: 'Porshe', price: 5000 },
+  { brand: 'Audi', price: 4000}
+];
+
+const carsWithTax = cars.map(car => {
+  // যেহেতু আমরা অব্জেক্ট রিটার্ন করতে চাই
+  return {
+    ...car,  // অরিজিনাল কার অব্জেক্ট কে রিটার্ন করবে
+    priceWithTax: car.price * 1.4  // এবং নতুন একটি ভ্যালু যোগ করবে সাথে ট্যাক্স সহ প্রাইস এর 
+  }
+});
+
+// result: 
+[
+  {brand: 'Porshe', price: 5000, priceWithTax: 7000},
+  {brand: 'Audi', price: 4000, priceWithTax: 5600}
+]
+
+```
