@@ -87,3 +87,65 @@ const cheapCars = cars.filter(car => car.price < 40000);
 যখন আপনি কোন কন্ডিশন এর উপর ভিত্তি করে অ্যারে থেকে আইটেম কে বাদ দিতে চান। ```.map()``` মেথড কিন্তু কোন আইটেম কে বাদ দেয়নি যেখানে ```.filter()``` মেথড আইটেম কে বাদ দিয়ে দেয়।
 
 আর জানতে ঢুঁ মারুন [এইখানে](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
+
+## 3. ```array.every()``` method
+
+```array.every()``` মেথড এর সিনট্যাক্সঃ ```Array.every(callback(element[, index[, array]])[, thisArg])```
+
+```.every()``` মেথড আরের প্রতিটা ভ্যালুকে কোন একটা কন্ডিশনএ টেস্ট করে এবং ফাইনালি যদি সব গুলো ভ্যালু টেস্ট পাস করে তাহলে বুলিয়ান ```true``` অথবা ```false``` রিটার্ন করে।
+
+
+ধরে নিন আমরা কত গুলো নাম্বার এর অ্যারে কে চেক করতে চাচ্ছি যে, তার সব গুল নাম্বার পজিটিভ কিনা? এই কাজ টি আমরা সহজেই ```.every()``` মেথড দিয়ে করতে পারি। 
+
+```
+let numbers = [10, -30, 30, 20];
+let allPositive = numbers.every(function(item){
+  return item > 0;
+});
+// es6
+allPositive = numbers.every( item => item > 0 );
+console.log(allPositive); // false
+
+numbers = [10, 30, 45, 20];
+allPositive = numbers.every(item => item > 0 );
+console.log(allPositive); // true
+```
+
+মনে করেন আপনার একটি রেজিস্ট্রেশন ফর্ম আছে আপনি চেক করতে চাচ্ছেন যে, ইউজার সব required ফিল্ড গুলো পুরণ করে কিনা। এই কাজটা আমরা এই মেথড দিয়ে সহজে করতে পারি। 
+
+```
+window.load = function(){
+  const form = document.getElementById('_form');
+  form.addEventListener('submit',function(event){
+    event.preventDefault();
+    const fields = ['first_name', 'email', 'phone', 'city'];
+    const allFieldsEntered = fields.every( item => document.getElementById(item).value.trim() !== '');
+
+
+    if (allFieldsEntered) {
+      console.log('All the fields are entered');
+      // All the field values are entered, submit the form
+    } else {
+      alert('Please, fill out all the field values.');
+    }
+  });
+}
+```
+
+
+```.every()``` মেথড এর সুবিধা হচ্ছে, অতিরিক্ত কোড লেখা ছাড়াই দ্রুত সব ভ্যালু কে চেক করা যায় কোন একটি কন্ডিশন এ। 
+
+### কখন ```.every()``` মেথড ব্যবহার করব? 
+
+আপনি যখন নিশিত করতে চান যে কোন একটি অ্যারের প্রতিটা আইটেম নির্দিস্ট কোন একটি শর্তকে মেনে চলে কিনা।  
+
+আর জানতে ঢুঁ মারুন [এইখানে](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every)
+
+
+
+
+
+
+
+
+
